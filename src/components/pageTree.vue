@@ -14,9 +14,11 @@ export default {
     name: 'PageTree',
     computed:{
         ...mapState("grounding",["pageNum","pageSelect"])
+        
     },
     methods:{
         ...mapActions("grounding",["setPageSelect"])
+
     }
 };
 </script>
