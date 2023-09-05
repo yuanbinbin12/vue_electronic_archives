@@ -41,22 +41,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
-div {
-    ul {
-        li {
-            tr {
-                td {
-                    a {
-                        div {
-                        }
-                    }
-                }
-                td {
-                }
-            }
-        }
-    }
-}ul li::marker{
+ ul li::marker{
     content: url('../static/pointLi.png');
     width: 5px;
  }
