@@ -1,7 +1,7 @@
 <template>
     <div>
-        <ul style="list-style:none;margin-top:0vh;height: 30vh;">
-            <li v-for="archivesPolicy in archivesPolicyArr" style="text-align: left !important; border-bottom: 1px solid rgba(61, 58, 58, 0.1);height: 5.25vh; cursor: pointer;" @click="downLoadPolicyFile(archivesPolicy.fguid)">
+        <ul style="list-style:none;margin-top:0px;height: 282px;">
+            <li v-for="archivesPolicy in archivesPolicyArr" style="text-align: left !important; border-bottom: 1px solid rgba(61, 58, 58, 0.1);height: 50px; cursor: pointer;" @click="downLoadPolicyFile(archivesPolicy.fguid)">
                 <h4 class="archivesOrg">【{{archivesPolicy.policyTitle}}】</h4>
                 <div class="archivesMessqge">
                     {{ archivesPolicy.policyPurpuse }}

@@ -1,8 +1,8 @@
 <template>
-    <div style="display: inline-block;margin-left: 2vw; cursor: pointer; color: #6e6c6c;" @click="openPage()">
+    <div style="display: inline-block;margin-left: 33px; cursor: pointer; color: #6e6c6c;" @click="openPage()">
         <div :id="'dueFile'+indexSum" :style="dueFileStyle">
             <div class="fCode">{{ ''+dueVoucher.infoCode }}</div>
-            <div style="height:3vh ; text-align: left !important; margin-left: 1.5vw;">
+            <div style="height:28px ; text-align: left !important; margin-left: 25px;">
                 <span >档案详情：</span>
                 <ul style="margin: 0;">
                     <li v-for="detailName,index in detailNameArr" :key="index">{{ detailName }}</li>
@@ -20,7 +20,7 @@ export default {
     props:["dueVoucher","indexSum"],
     computed:{
         dueFileStyle(){
-            return{clear:"both",width: '14vw',height: '25vh',display: 'inline-block' ,'backgroundSize':'cover','backgroundRepeat':'no-repeat','backgroundPosition':'center','backgroundImage':'url(' + require(`@/static/${this.indexSum+1}.png`) + ')'}
+            return{clear:"both",width: '235px',height: '235px',display: 'inline-block' ,'backgroundSize':'cover','backgroundRepeat':'no-repeat','backgroundPosition':'center','backgroundImage':'url(' + require(`@/static/${this.indexSum+1}.png`) + ')'}
         },
         detailNameArr(){
             if(this.dueVoucher&& this.dueVoucher.detailName && this.dueVoucher.detailName.length>4){
@@ -62,18 +62,18 @@ export default {
 <style lang="css" scoped>
 .returnDay{
     position: relative;
-    top: 7.5vh; 
-    left: 4vw;
+    top: 70.5px; 
+    left: 66px;
     font-family: "MicrosoftYaHei-Bold";
     font-weight: 550;
-    font-size: 1em;
-    line-height: 2vw;
+    font-size: 16px;
+    line-height: 33px;
     color: #fff;
 }
 .fCode{
     text-align: center;
-    padding-top: 7.5vh;
-    width: 14vw;
+    padding-top: 70px;
+    width: 235px;
     font-size: 20px;
     overflow: hidden;
     text-overflow:ellipsis;

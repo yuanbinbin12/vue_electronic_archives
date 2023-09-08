@@ -22,13 +22,13 @@ export default {
 <style lang="css" scoped>
     .block{
         text-align: left !important;
-        margin-top: 4.5vh;
-        margin-left: 0.6vw;
+        margin-top: 42px;
+        margin-left: 10px;
     }
     .borowSpan{
         position: relative;
-        top:-3.1vh;
-        left: 0.7vw;
+        top:-29px;
+        left: 12px;
         font-family: "MicrosoftYaHei ";
         font-weight: 400;
         font-size: 14px;
@@ -41,7 +41,7 @@ export default {
         line-height: 45.5px;
         text-align: left;
         position: relative;
-        top:-2.9vh;
-        left: 1.2vw;
+        top:-25px;
+        left: 20px;
     }
 </style>

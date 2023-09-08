@@ -48,7 +48,7 @@ export default {
     },
     actions:{
         getBorrowVoucher(context){
-            axios.post(`/OSPApplication/firstPage/borrowVoucher/${context.state.userName}`).then(Response=>{
+            axios.post(`${window.parent.parent.reactGPO.contextPath}/firstPage/borrowVoucher/${context.state.userName}`).then(Response=>{
                 if(Response.data.code==="0"){
                     context.commit("getBorrowVoucher",Response.data.data);
                 } else{
@@ -68,7 +68,7 @@ export default {
             })
         },
         getInformation(context){
-            axios.post(`/OSPApplication/firstPage/getInformation`).then(Response=>{
+            axios.post(`${window.parent.parent.reactGPO.contextPath}/firstPage/getInformation`).then(Response=>{
                 if(Response.data.code==="0"){
                     context.commit("getInformation",Response.data.data);
                 } else{
@@ -88,7 +88,7 @@ export default {
             })
         },
         getPolicyList(context){
-            axios.post(`/OSPApplication/firstPage/getPolicy`).then(Response=>{
+            axios.post(`${window.parent.parent.reactGPO.contextPath}/firstPage/getPolicy`).then(Response=>{
                 if(Response.data.code==="0"){
                     context.commit("getPolicyList",Response.data.data);
                 } else{
@@ -116,7 +116,7 @@ export default {
             context.commit("setLoading",true);
             const formData = new FormData();
             formData.append("file",file);
-            await axios.post(`/OSPApplication/general/uploadHeadPic/${context.state.userName}`,formData,{
+            await axios.post(`${window.parent.parent.reactGPO.contextPath}/general/uploadHeadPic/${context.state.userName}`,formData,{
                 "Content-Type": "multipart/form-data;charset=utf-8"
             }).then(Response=>{
                 if(Response.data.code==="0"){
@@ -134,7 +134,7 @@ export default {
             })
         },
         async getUserHead(context){
-            axios.get(`/OSPApplication/general/viewUserHeadPic/${context.state.userName}`,{
+            axios.get(`${window.parent.parent.reactGPO.contextPath}/general/viewUserHeadPic/${context.state.userName}`,{
                 responseType: 'blob'
             }).then(Response=>{
                 if(Response.data.type.indexOf("image")!==-1){
@@ -152,7 +152,7 @@ export default {
         },
         async downLoadPolicyFile(context,fguid){
             context.commit("setLoadingDown",true);
-            await axios.get(`/OSPApplication/general/batchDownloadFile/${fguid}/${context.state.userName}`,{
+            await axios.get(`${window.parent.parent.reactGPO.contextPath}/general/batchDownloadFile/${fguid}/${context.state.userName}`,{
                 responseType: 'blob'
             }).then(Response=>{
                 if(Response.data.type==="multipart/form-data"){
@@ -188,12 +188,12 @@ export default {
     state:{
         userHeaderCircleUrl:"",
         userHeaderCircleBlob:"",
-        // userName:"9999",//window.parent.parent.reactGPO.UserName
-        // userCaption:"管理员",//window.parent.parent.reactGPO.UserCaption
-        // userJob:"华发物业",//window.parent.parent.reactGPO.orgName
-        userName:window.parent.parent.reactGPO.UserName,
-        userCaption:window.parent.parent.reactGPO.UserCaption,
-        userJob:window.parent.parent.reactGPO.orgName,
+        userName:"9999",//window.parent.parent.reactGPO.UserName
+        userCaption:"管理员",//window.parent.parent.reactGPO.UserCaption
+        userJob:"华发物业",//window.parent.parent.reactGPO.orgName
+        // userName:window.parent.parent.reactGPO.UserName,
+        // userCaption:window.parent.parent.reactGPO.UserCaption,
+        // userJob:window.parent.parent.reactGPO.orgName,
         dueVoucherSum:0,
         loadingUpload:false,
         loadingDownload:false,

@@ -71,7 +71,7 @@ export default {
                 index++;
                 if (codeIdList.length > 0) {
                     getAsyncAxios(
-                        `/OSPApplication/general/generateQRCode/${codeIdList.join(",")}`,
+                        `${window.parent.parent.reactGPO.contextPath}/general/generateQRCode/${codeIdList.join(",")}`,
                         codeIdList.length*220,
                         index
                       );
@@ -83,7 +83,7 @@ export default {
             if (codeIdList.length > 0) {
               index++;
               getAsyncAxios(
-                `/OSPApplication/general/generateQRCode/${codeIdList.join(",")}`,
+                `${window.parent.parent.reactGPO.contextPath}/general/generateQRCode/${codeIdList.join(",")}`,
                 codeIdList.length*250,
                 index
               );

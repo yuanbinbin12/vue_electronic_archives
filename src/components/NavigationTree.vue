@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import {mapActions,mapMutations,mapState} from "vuex";
+import {mapActions,mapState} from "vuex";
 export default {
     name: 'NavigationTree',
     props:["navigationBooolean"],
@@ -54,7 +54,6 @@ export default {
     ...mapState("grounding",["navigation"]),
   },
   beforeRouteLeave(to,from,next){
-        
         next();
     },
   };

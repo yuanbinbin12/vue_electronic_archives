@@ -1,16 +1,16 @@
 <template>
     <div>
-        <div style="width: 100%;height: 3.5vh; border-bottom: 2px solid #999999;">
-            <div class="dueSum" style="float: left;padding-top: 0.2vh;">即将到期档案<span style="color: #fe4848;">
+        <div style="width: 100%;height: 32px; border-bottom: 2px solid #999999;">
+            <div class="dueSum" style="float: left;padding-top: 2px;">即将到期档案<span style="color: #fe4848;">
                 {{ dueVoucherSum }}&nbsp;</span>份
             </div>
             <div style="position: absolute; right: 0px;">
                 <div style="background-color: #fff; margin-right: 20px; cursor: pointer;">
-                    <div class="btn4" @click="openHandle"><span style=" font-size: 0.1em;">我的待办</span></div>
+                    <div class="btn4" @click="openHandle"><span style=" font-size: 6px;">我的待办</span></div>
                 </div>
             </div>
         </div>
-        <div style="width: 100%;margin-top: 1.5vh;position: relative; left: -0.7vw;">
+        <div style="width: 100%;margin-top: 14px;position: relative; left: -11.5px;">
             <div style="margin: 0 auto; white-space: nowrap;">
                 <DueVoucher v-for="(DueVoucher,index) in dueVoucherList" :indexSum="index" :key="index" :dueVoucher="DueVoucher"/>
             </div>
