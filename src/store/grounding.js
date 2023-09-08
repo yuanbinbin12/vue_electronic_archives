@@ -56,7 +56,7 @@ export default {
     getCabinetArr(context,param){
         let cabinetIds = param.cabinetId==""?context.state.cabinetId:param.cabinetId;
         context.commit("setPageSelect",param.pageSelect);
-      axios.post("/OSPApplication/cabinet/loadCabinet",{"cabinetId":cabinetIds,"face":param.pageSelect}).then(
+      axios.post("${window.parent.parent.reactGPO.contextPath}/cabinet/loadCabinet",{"cabinetId":cabinetIds,"face":param.pageSelect}).then(
                 Response=>{
                     if(Response.data.code==="0"){
                         context.commit("getCabinetArr",{
@@ -85,7 +85,7 @@ export default {
             return;
         }
         context.commit("setBoxid",param);
-        // axios.post("/OSPApplication/cabinet/upCabinet",{"boxId":param.boxId,"id":param.fileBag}).then(
+        // axios.post("${window.parent.parent.reactGPO.contextPath}/cabinet/upCabinet",{"boxId":param.boxId,"id":param.fileBag}).then(
         //     Response=>{
         //         if(Response.data.code==="0"){
                     
@@ -101,9 +101,9 @@ export default {
     getNavigation(context,navigationBooolean){
         var navigationUrl = "";
         if(navigationBooolean==="1"){
-            navigationUrl = `/OSPApplication/cabinet/loadRepository/9999`;//${window.parent.parent.reactGPO.UserName}
+            navigationUrl = `${window.parent.parent.reactGPO.contextPath}/cabinet/loadRepository/9999`;//${window.parent.parent.reactGPO.UserName}
         } else if(navigationBooolean === "2"){
-            navigationUrl = `/OSPApplication/cabinet/queryRepository/9999`;
+            navigationUrl = `${window.parent.parent.reactGPO.contextPath}/cabinet/queryRepository/9999`;
         }
         axios.post(navigationUrl).then(
             Response=>{
@@ -121,7 +121,7 @@ export default {
     setPageSelect(context,pageSelect){
         context.commit("setPageSelect",pageSelect);
         let cabinetIds = context.state.cabinetId;
-        axios.post("/OSPApplication/cabinet/loadCabinet",{"cabinetId":cabinetIds,"face":pageSelect}).then(
+        axios.post("${window.parent.parent.reactGPO.contextPath}/cabinet/loadCabinet",{"cabinetId":cabinetIds,"face":pageSelect}).then(
             Response=>{
                 if(Response.data.code==="0"){
                     context.commit("getCabinetArr",{

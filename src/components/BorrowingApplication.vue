@@ -1,11 +1,11 @@
 <template>
     <div>
         <ul>
-            <li v-for="borrowApplication in borrowApplicationArr" :key="borrowApplication.fGuid" style="padding-bottom:0.5vh; color: #55565a; border-bottom: 1px solid rgba(61, 58, 58, 0.1);cursor: pointer;" @click="openPage(borrowApplication.fguid,borrowApplication.djzt)">
+            <li v-for="borrowApplication in borrowApplicationArr" :key="borrowApplication.fGuid" style="padding-bottom:5px; color: #55565a; border-bottom: 1px solid rgba(61, 58, 58, 0.1);cursor: pointer;" @click="openPage(borrowApplication.fguid,borrowApplication.djzt)">
                     <tr style="position: relative; top:3px;">
-                        <td style="width: 10vw; text-align: left !important;padding-left: 1.9vw;"><a><div style="overflow: hidden;text-overflow:ellipsis; width: 10vw">{{ borrowApplication.code }}</div></a></td>
-                        <td style="padding-left: 25dvw;">借阅申请</td>
-                        <td style="padding-left: 25vw;">{{ borrowApplication.fcreate[0]+'-'+(borrowApplication.fcreate[1]>10?borrowApplication.fcreate[1]:'0'+borrowApplication.fcreate[1])+'-'+(borrowApplication.fcreate[2]>=10?borrowApplication.fcreate[2]:'0'+borrowApplication.fcreate[2]) }}</td>
+                        <td style="width: 167px; text-align: left !important;padding-left: 31px;"><a><div style="overflow: hidden;text-overflow:ellipsis; width: 167px">{{ borrowApplication.code }}</div></a></td>
+                        <td style="padding-left: 417px;">借阅申请</td>
+                        <td style="padding-left: 417px;">{{ borrowApplication.fcreate[0]+'-'+(borrowApplication.fcreate[1]>10?borrowApplication.fcreate[1]:'0'+borrowApplication.fcreate[1])+'-'+(borrowApplication.fcreate[2]>=10?borrowApplication.fcreate[2]:'0'+borrowApplication.fcreate[2]) }}</td>
                     </tr>
             </li>
         </ul>
