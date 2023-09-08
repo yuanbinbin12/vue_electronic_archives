@@ -7,19 +7,19 @@
     >
         <el-row :gutter="8">
             <el-col :span="4" class="userMessage">
-                <div class="grid-content bg-purple" style="height: 310px;">
+                <div class="grid-content bg-purple" style="height: 290px;">
                     <UserMessage/>
                 </div>
             </el-col>
             <el-col :span="20">
-                <div class="grid-content bg-purple" style="height: 310px;">
+                <div class="grid-content bg-purple" style="height: 290px;">
                     <DueVoucherList/>
                 </div>
             </el-col>
         </el-row>
         <el-row :gutter="8">
             <el-col :span="4">
-                <div class="grid-content bg-purple" style="height: 301px;">
+                <div class="grid-content bg-purple" style="height: 271px;">
                     <div style="text-align: left !important;">
                         <span class="borrowTotalSpan">我的借阅统计</span>
                     </div>
@@ -30,7 +30,7 @@
                 </div>
             </el-col>
             <el-col :span="20">
-                <div class="grid-content bg-purple" style="height: 301px">
+                <div class="grid-content bg-purple" style="height: 271px">
                     <div style="text-align: left !important;">
                         <span class="borrowTotalSpan">我的借阅申请</span>
                     </div>
@@ -43,7 +43,7 @@
         </el-row>
         <el-row :gutter="8">
             <el-col :span="12">
-                <div class="grid-content bg-purple" style="height: 329px">
+                <div class="grid-content bg-purple" style="height: 309px">
                     <div style="text-align: left !important;">
                         <span class="borrowTotalSpan">档案政策</span>
                     </div>
@@ -54,7 +54,7 @@
                 </div>
             </el-col>
             <el-col :span="12">
-                <div class="grid-content bg-purple" style="height: 329px;">
+                <div class="grid-content bg-purple" style="height: 309px;">
                     <div style="text-align: left !important;">
                         <span class="borrowTotalSpan">通知公告</span>
                         <div class="btn4" @click="openDetails"><span style=" font-size: 0.1em;">更多</span></div>
@@ -192,6 +192,9 @@ background: #fff !important;
 .btn4:hover span::after {
     opacity: 1;
     right: 0;
+}
+.el-row{
+    margin-bottom: 5px !important;
 }
 
 </style>
