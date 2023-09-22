@@ -20,22 +20,43 @@
       </el-row>
       <router-view></router-view>
       <WarningAlter :warningMsg = "warningMsg" :typeMsg="typeMsg" :isShowPage="'1'"/>
+      <ConfirmDialog
+        v-show="showConfirmDialog"
+        :showConfirmDialog = "showConfirmDialog"
+        title="取消订单"
+        content="取消订单后不可恢复，是否确认取消订单？"
+        @cancelFun="cancelFun"
+        @confirmFun="confirmFun"
+        >
+        </ConfirmDialog>
     </div>
   </template>
   
   <script>
   
-  import { mapState} from 'vuex';
+  import { mapState,mapMutations,mapActions} from 'vuex';
   import WarningAlter from '../components/WarningAlter.vue';
   import Grounding from "./Grounding.vue";
+  import ConfirmDialog from '../components/ConfirmDialog.vue';
   export default {
     name: 'ShowPage',
     components:{
-      Grounding,WarningAlter
+      Grounding,WarningAlter,ConfirmDialog
     },
     computed:{
-      ...mapState("grounding",["warningMsg","typeMsg"]),
+      ...mapState("grounding",["warningMsg","typeMsg","showConfirmDialog"]),
     },
+    methods:{
+      ...mapMutations("grounding",["setShowConfirmDialog"]),
+      ...mapActions("grounding",["clearOutBox"]),
+      confirmFun(){
+            this.clearOutBox();
+            this.setShowConfirmDialog(false);
+        },
+        cancelFun(){
+          this.setShowConfirmDialog(false);
+        }
+    }
   }
   </script>
   

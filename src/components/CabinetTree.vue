@@ -1,5 +1,5 @@
 <template>
-    <div class="CabinetTree" style="position: relative; top: 40px; width: 100%; white-space: nowrap;display: inline-block;">    
+    <div class="CabinetTree" style="position: relative; top: 10px; width: 100%; white-space: nowrap;display: inline-block;">    
         <LayerTree v-for="(boxArr,index) in CabinetArr" :boxArr="boxArr" :XAxis="index">
             <span>{{ "第"+(index+1)+"层" }}</span>
         </LayerTree>

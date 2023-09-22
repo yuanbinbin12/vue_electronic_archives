@@ -50,13 +50,44 @@ export default {
                 state.typeMsg = param.type;
             }
         },
+        setOutBox(state,param){
+            if(state.requestOutBox.indexOf(param.fileBagId)===-1){
+                state.requestOutBox.push(param.fileBagId);
+            }else{
+                let index = state.requestOutBox.indexOf(param.fileBagId);
+                state.requestOutBox.splice(index,1);
+            }
+            window.parent.requestOutBoxList = JSON.stringify(state.requestOutBox);
+        },
+        clearChangeBox(state){
+            while(state.changeBoxList.pop()){};
+            while(state.changeBoxListMap.pop()){};
+        },
+        clearOutBox(state,clearOutSunccessList){
+            clearOutSunccessList.map((clearOutSunccess)=>{
+                let index = state.requestOutBox.indexOf(clearOutSunccess);
+                if(index!==-1){
+                    state.requestOutBox.splice(index,1);
+                }
+                let downedBoxIndex = state.downedBox.indexOf(clearOutSunccess);
+                if(downedBoxIndex===-1){
+                    state.downedBox.push(clearOutSunccess);
+                }
+            })
+        },
+        setShowConfirmDialog(state,bool){
+            if(bool || bool===""){
+                state.showConfirmDialog =true;
+            }
+            state.showConfirmDialog = bool;
+        }
     },
     actions:{
          //获取 显示列表数据
     getCabinetArr(context,param){
         let cabinetIds = param.cabinetId==""?context.state.cabinetId:param.cabinetId;
         context.commit("setPageSelect",param.pageSelect);
-      axios.post("${window.parent.parent.reactGPO.contextPath}/cabinet/loadCabinet",{"cabinetId":cabinetIds,"face":param.pageSelect}).then(
+      axios.post(`${window.parent.parent.reactGPO.contextPath}/cabinet/loadCabinet`,{"cabinetId":cabinetIds,"face":param.pageSelect}).then(
                 Response=>{
                     if(Response.data.code==="0"){
                         context.commit("getCabinetArr",{
@@ -101,9 +132,9 @@ export default {
     getNavigation(context,navigationBooolean){
         var navigationUrl = "";
         if(navigationBooolean==="1"){
-            navigationUrl = `${window.parent.parent.reactGPO.contextPath}/cabinet/loadRepository/9999`;//${window.parent.parent.reactGPO.UserName}
+            navigationUrl = `${window.parent.parent.reactGPO.contextPath}/cabinet/loadRepository/${window.parent.parent.reactGPO.UserName}`;//${window.parent.parent.reactGPO.UserName}
         } else if(navigationBooolean === "2"){
-            navigationUrl = `${window.parent.parent.reactGPO.contextPath}/cabinet/queryRepository/9999`;
+            navigationUrl = `${window.parent.parent.reactGPO.contextPath}/cabinet/queryRepository/${window.parent.parent.reactGPO.UserName}`;
         }
         axios.post(navigationUrl).then(
             Response=>{
@@ -121,7 +152,7 @@ export default {
     setPageSelect(context,pageSelect){
         context.commit("setPageSelect",pageSelect);
         let cabinetIds = context.state.cabinetId;
-        axios.post("${window.parent.parent.reactGPO.contextPath}/cabinet/loadCabinet",{"cabinetId":cabinetIds,"face":pageSelect}).then(
+        axios.post(`${window.parent.parent.reactGPO.contextPath}/cabinet/loadCabinet`,{"cabinetId":cabinetIds,"face":pageSelect}).then(
             Response=>{
                 if(Response.data.code==="0"){
                     context.commit("getCabinetArr",{
@@ -134,6 +165,19 @@ export default {
             error=>{
             
         });
+    },
+    clearOutBox(context){
+        axios.post(`${window.parent.parent.reactGPO.contextPath}/cabinet/downCabinet`,{"idList":JSON.stringify(context.state.requestOutBox)}).then(
+            Response=>{
+                if(Response.data.code==="0"){
+                    context.commit("clearOutBox",Response.data.data);
+                }else{
+                    context.commit("setWarningMsg",{"message":Response.data.message,"type":"error"})
+                }
+            },
+            error=>{
+                
+            });
     }
     },
     state:{
@@ -147,6 +191,10 @@ export default {
         changeBoxList:[],//选择的格信息
         joint:0,//当前存在架子的每节格数
         boxGroupedList:JSON.parse(localStorage.getItem("BoxingId")),//需要上架的盒信息
-        changeBoxListMap:[]
+        changeBoxListMap:[],
+        requestOutBox:[],//需要下架的数据
+        downedBox:[],
+        showConfirmDialog:false,
+        isGroupingCabinet:localStorage.getItem("isGroupingCabinet")
     }
 }

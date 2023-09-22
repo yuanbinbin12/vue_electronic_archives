@@ -3,7 +3,7 @@
         <div class='jointParent' style="margin-top: 15px; display: inline-block;">
             <slot>不存在数据</slot>
             <div v-for="jointNumkey,jointNumindex in jointNum" class="joint">
-                <div style="position: relative;top: -20px;">{{ `第${jointNumkey}节` }}</div>
+                <div style="position: relative;top: -20px; size: 12px;height: 15px;">{{ `第${jointNumkey}节` }}</div>
                 <BoxTree v-for="key,index in joint"  :boxKey="getArr(jointNumindex,joint,index)" :key="index" :positionArr="[XAxis,jointNumindex,index]"/>
             </div>
         </div>
@@ -33,8 +33,8 @@ export default {
     },
     methods:{
         getArr(jointNumindex,joint,index){
-            var indexxx = jointNumindex*(joint)+index;
-            return this.boxArr.at(parseInt(indexxx))
+            var indexxx = parseInt(jointNumindex*(joint)+index);
+            return this.boxArr[indexxx]
         }
     }
     
@@ -46,15 +46,16 @@ export default {
 
 .joint {
     display: inline-block;
-    padding-right: 20px;
-    margin-left: 5px;
+    padding-right: 15px;
+    padding-left: 5px;
+    margin-left: 20px;
     margin-right: 5px;
-    margin-top: 15px;
-    padding-bottom: 20px;
-    background: linear-gradient(90deg, #333 50%, transparent 0) repeat-x,
-    linear-gradient(90deg, #333 50%, transparent 0) repeat-x,
-    linear-gradient(0deg, #333 50%, transparent 0) repeat-y,
-    linear-gradient(0deg, #333 50%, transparent 0) repeat-y;
+    margin-top: 5px;
+    padding-bottom: 10px;
+    background: linear-gradient(90deg, #b1aeae 50%, transparent 0) repeat-x,
+    linear-gradient(90deg, #b1aeae 50%, transparent 0) repeat-x,
+    linear-gradient(0deg, #b1aeae 50%, transparent 0) repeat-y,
+    linear-gradient(0deg, #b1aeae 50%, transparent 0) repeat-y;
     background-size: 10px 2px, 10px 2px, 2px 10px, 2px 10px;
     background-position: 0 0, 0 100%, 0 0, 100% 0;
     

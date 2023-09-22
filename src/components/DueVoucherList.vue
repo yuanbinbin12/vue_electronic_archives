@@ -11,7 +11,7 @@
             </div>
         </div>
         <div style="width: 100%;margin-top: 14px;position: relative; left: -11.5px;">
-            <div style="margin: 0 auto; white-space: nowrap;">
+            <div style="margin: 0 auto; white-space: nowrap;" :style="dueFileListStyle">
                 <DueVoucher v-for="(DueVoucher,index) in dueVoucherList" :indexSum="index" :key="index" :dueVoucher="DueVoucher"/>
             </div>
         </div>
@@ -24,21 +24,33 @@ import DueVoucher from './DueVoucher.vue';
 export default {
     name: 'DueVoucherList',
     computed:{
-        ...mapState("firstPage",["dueVoucherList","dueVoucherSum"])
+        ...mapState("firstPage",["dueVoucherList","dueVoucherSum"]),
+        dueFileListStyle(){
+            if(this.dueVoucherSum>=5){
+                return {
+                    textAlign:"center",
+                }
+            }else{
+                return {
+                    textAlign:"left",
+                }     
+            }
+        }
     },
     components:{
         DueVoucher
     },
     methods:{
         openHandle(){
-            window.parent.openReactForm(
+            window.parent.parent.openReactForm(
                     {
                         id: this.boxKey,
                         caption: '我的待办',
                         serverID: 'serverID', // 不需要可不传
                         config: {
                             displayType: 'OpenTab', // 打开方式，默认为 OpenTab:应用新tab页; DrawerForm: 抽屉； BrowserTab：浏览器tab页； OpenWindow：弹窗
-                            forms: 'sys_homepage_show'
+                            forms: 'sys_homepage_show',
+                            DefaultManageFormID:"PICTURE_HOMEPAGE"
                         }
                     }
             )
