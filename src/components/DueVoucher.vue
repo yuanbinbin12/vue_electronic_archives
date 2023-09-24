@@ -1,5 +1,5 @@
 <template>
-    <div style="display: inline-block;margin-left: 33px; cursor: pointer; color: #6e6c6c;" @click="openPage()">
+    <div style="display: inline-block;margin-left: 33px; cursor: pointer; color: #6e6c6c; text-align: center;" @click="openPage()">
         <div :id="'dueFile'+indexSum" :style="dueFileStyle">
             <div class="fCode">{{ ''+dueVoucher.infoCode }}</div>
             <div style="height:28px ; text-align: left !important; margin-left: 25px;">

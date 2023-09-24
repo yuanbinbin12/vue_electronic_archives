@@ -5,19 +5,38 @@
             <option value="1" :selected="pageSelect===1">A面</option>
             <option value="2" v-show="pageNum==='2'" :selected="pageSelect===2">B面</option>
         </select>
+        <div style="display: inline-block;" v-if="isGroupingCabinet==='1'">
+            <el-button type="success" @click="clearChangeBox" round>取消待上架</el-button>
+        </div>
+        <div style="display: inline-block;" v-if="isGroupingCabinet==='2'">
+            <el-button type="primary" @click="downCabinet" round>下架</el-button>
+        </div>
     </div>
 </template>
 
 <script>
-import {mapState,mapActions} from 'vuex';
+import {mapState,mapActions,mapMutations} from 'vuex';
 export default {
     name: 'PageTree',
+    data(){
+        return{
+            showConfirmDialog:false
+        }
+    },
     computed:{
-        ...mapState("grounding",["pageNum","pageSelect"])
+        ...mapState("grounding",["pageNum","pageSelect","requestOutBox","isGroupingCabinet"])
     },
     methods:{
-        ...mapActions("grounding",["setPageSelect"])
-    }
+        ...mapActions("grounding",["setPageSelect","clearOutBox"]),
+        ...mapMutations("grounding",["clearChangeBox","setShowConfirmDialog","setWarningMsg"]),
+        downCabinet(){
+            if(this.requestOutBox.length >0){
+                this.setShowConfirmDialog(true);
+            }else{
+                this.setWarningMsg({"message":"请选择需要下架的盒在进行下架操作！","type":"error"})
+            }
+        }
+    },
 };
 </script>
 
@@ -25,9 +44,13 @@ export default {
 div{
     text-align:left;
 }
+.el-button{
+    float: none;
+    margin: 10px;
+  }
 .form-control {
     display: inline-block;
-    width: 30%;
+    width: 300px;
     height: 34px;
     padding: 6px 12px;
     font-size: 14px;
@@ -49,12 +72,13 @@ select::-ms-expand { display: none; }
 
 /* 定义隐藏下拉框默认样式及图片覆盖下拉按钮 */   
 .info-select{
-    width: 30%;
+    width: 300px;
     outline:none;
     appearance:none;
     -moz-appearance:none;
     -webkit-appearance:none;
     -ms-appearance:none;
-    background: #fff no-repeat scroll right center transparent;           
+    background: #fff no-repeat scroll right center transparent;  
+    margin-right: 80px;         
 }
 </style>
