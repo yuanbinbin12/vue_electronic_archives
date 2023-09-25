@@ -100,8 +100,8 @@ export default {
             }
         },
         boxMouseOver(){
-            if(this.boxKey["dataId"]!==""&&this.boxKey["dataId"]!==null && (this.voucherCode==="" || this.voucherCode === null)){
-                axios.post(`${window.parent.parent.reactGPO.contextPath}/cabinet/loadBoxCode/${this.boxKey["dataId"]}`).then(res=>{
+            if(this.boxKey["dataId"]&&this.boxKey["dataId"]!==""&&this.boxKey["dataId"]!==null && (this.voucherCode==="" || this.voucherCode === null)){
+                axios.post(`/cabinet/loadBoxCode/${this.boxKey["dataId"]}`).then(res=>{
                 if(res.data.code==="0"){
                     this.voucherCode = res.data.data;
                 }
