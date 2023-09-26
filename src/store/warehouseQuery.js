@@ -14,7 +14,7 @@ export default {
         //获取密集柜表格信息
         getTableData(context,tableId){
             context.commit("setLoading",true,{root:true})
-            axios.post(`/cabinet//queryCabinet/${tableId}`).then(
+            axios.post(`/cabinet/queryCabinet/${tableId}`).then(
                 Response=>{
                     if(Response.data.code==="0"){
                         context.commit("getTableData",Response.data.data);

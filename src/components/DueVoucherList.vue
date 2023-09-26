@@ -46,7 +46,7 @@ export default {
                     {
                         id: this.boxKey,
                         caption: '我的待办',
-                        serverID: 'serverID', // 不需要可不传
+                        serverID: 'ARCHIVE', // 不需要可不传
                         config: {
                             displayType: 'OpenTab', // 打开方式，默认为 OpenTab:应用新tab页; DrawerForm: 抽屉； BrowserTab：浏览器tab页； OpenWindow：弹窗
                             forms: 'sys_homepage_show',
