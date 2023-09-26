@@ -49,7 +49,7 @@ export default {
                         config: {
                             displayType: 'OpenTab', // 打开方式，默认为 OpenTab:应用新tab页; DrawerForm: 抽屉； BrowserTab：浏览器tab页； OpenWindow：弹窗
                             forms: 'EA_BORROW',
-                            OBJ_GUID:this.dueVoucher.infoFGuid,
+                            OBJ_GUID:this.dueVoucher.infofguid,
                             OBJ_DJZT:this.dueVoucher.djzt
                         }
                     }
