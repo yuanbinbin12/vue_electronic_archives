@@ -3,7 +3,6 @@
     v-loading="loadingDownload" element-loading-text="拼命下载档案政策中"
             element-loading-spinner="el-icon-loading"
             element-loading-background="rgba(0, 0, 0, 0.8)"
-            v-loading.fullscreen="fullscreenLoading"
     >
         <el-row :gutter="8">
             <el-col :span="4" class="userMessage">
@@ -94,6 +93,7 @@ export default {
             window.parent.parent.openReactComp({
                 id:"12345",
                 caption: '通知公告',
+                serverID: 'ARCHIVE', // 不需要可不传
                 config: {
                             displayType: 'OpenTab',
                             formType: 'ReactComp',

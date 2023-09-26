@@ -35,23 +35,23 @@ export default {
     computed:{
         ...mapState("grounding",["changeBoxList","requestOutBox","isGroupingCabinet","downedBox"]),
         lightClass(){
-            if(this.changeBoxList.indexOf(this.boxKey["fguid"])!==-1){
+            if(this.changeBoxList.indexOf(this.boxKey["fGuid"])!==-1){
                 return "boxing isChange";
             }
-            if(this.requestOutBox.indexOf(this.boxKey["fguid"])!==-1){
+            if(this.requestOutBox.indexOf(this.boxKey["fGuid"])!==-1){
                 return "boxing outBox";
             }
-            if(this.boxKey["dataId"]&&this.boxKey["dataId"]["dataId"]!==""&&this.boxKey["dataId"]!==null&& this.downedBox.indexOf(this.boxKey["fguid"])===-1){
+            if(this.boxKey["dataId"]&&this.boxKey["dataId"]["dataId"]!==""&&this.boxKey["dataId"]!==null&& this.downedBox.indexOf(this.boxKey["fGuid"])===-1){
                 return "boxing lighted";
             }else{
                 return "boxing";
             }
         },
         getBoxingState(){
-            if(this.changeBoxList.indexOf(this.boxKey["fguid"])!==-1){
+            if(this.changeBoxList.indexOf(this.boxKey["fGuid"])!==-1){
                 return "【待上架】";
             }
-            if(this.requestOutBox.indexOf(this.boxKey["fguid"])!==-1){
+            if(this.requestOutBox.indexOf(this.boxKey["fGuid"])!==-1){
                 return "【待下架】";
             }
             if(this.boxKey["dataId"]&&this.boxKey["dataId"]["dataId"]!==""&&this.boxKey["dataId"]!==null){
@@ -70,12 +70,12 @@ export default {
                 if(this.boxKey["dataId"]&&this.boxKey["dataId"]!==null && this.boxKey["dataId"]!==""){
                     // this.setWarningMsg({"message":"该卡位已上架盒，不能进行再次上架！","type":"error"})
                     if(this.isGroupingCabinet === "2"){
-                        this.setOutBox({fileBagId:this.boxKey["fguid"]})
+                        this.setOutBox({fileBagId:this.boxKey["fGuid"]})
                     }
 
             } else if(this.isGroupingCabinet === "1"){
                 this.setBoxid({
-                    "fileBagId":this.boxKey["fguid"],
+                    "fileBagId":this.boxKey["fGuid"],
                     "fileBagName":this.boxKey["slotMc"]===null || this.boxKey["slotMc"]===""?(this.positionArr[0]+1)+"层-"+(this.positionArr[1]+1)+"节-"+(this.positionArr[2]+1)+"卡位":this.boxKey["slotMc"],
                     "repositoryId":this.boxKey["repositoryId"]
                 });
@@ -88,7 +88,7 @@ export default {
                         {
                             id: this.boxKey.dataId,
                             caption: '档案装盒',
-                            serverID: 'serverID', // 不需要可不传
+                            serverID: 'ARCHIVE', // 不需要可不传
                             config: {
                                 displayType: 'OpenTab', // 打开方式，默认为 OpenTab:应用新tab页; DrawerForm: 抽屉； BrowserTab：浏览器tab页； OpenWindow：弹窗
                                 forms: 'EA_BOXING',

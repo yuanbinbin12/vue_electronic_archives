@@ -34,6 +34,7 @@ export default {
                 caption: '通知公告详情',
                 "F_MC":"通知公告详情",
                 title:"通知公告详情",
+                serverID: 'ARCHIVE', // 不需要可不传
                 config: {
                             displayType: 'OpenTab',
                             formType: 'ReactComp',
