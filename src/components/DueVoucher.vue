@@ -2,12 +2,15 @@
     <div style="display: inline-block;margin-left: 33px; cursor: pointer; color: #6e6c6c; text-align: center;" @click="openPage()">
         <div :id="'dueFile'+indexSum" :style="dueFileStyle">
             <div class="fCode">{{ ''+dueVoucher.infoCode }}</div>
-            <div style="height:28px ; text-align: left !important; margin-left: 25px;">
-                <span >档案详情：</span>
-                <ul style="margin: 0;">
+            <div style="height:68px ; text-align: left !important; margin-left: 25px;overflow-y: hidden;overflow: hidden;text-overflow:ellipsis;">
+                <span v-show="dueVoucher.borrowNote.trim()!==''">借阅用途：</span>
+                <p style="white-space:initial;margin-top: 3px;" class="borrowNote">
+                    {{ dueVoucher.borrowNote }}
+                </p>
+                <!-- <ul style="margin: 0;">
                     <li v-for="detailName,index in detailNameArr" :key="index">{{ detailName }}</li>
                     <li v-show="dueVoucher && dueVoucher.detailName && dueVoucher.detailName.length>4">......</li>
-                </ul>
+                </ul> -->
             </div>
             <div class = "returnDay">{{ returnDayStr }}</div>
         </div>
@@ -22,14 +25,14 @@ export default {
         dueFileStyle(){
             return{clear:"both",width: '235px',height: '235px',display: 'inline-block' ,'backgroundSize':'cover','backgroundRepeat':'no-repeat','backgroundPosition':'center','backgroundImage':'url(' + require(`@/static/${this.indexSum+1}.png`) + ')'}
         },
-        detailNameArr(){
-            if(this.dueVoucher&& this.dueVoucher.detailName && this.dueVoucher.detailName.length>4){
-                return this.dueVoucher.detailName.slice(0,4)
-            } else{
-                return this.dueVoucher.detailName;
-            }
+        // detailNameArr(){
+        //     if(this.dueVoucher&& this.dueVoucher.detailName && this.dueVoucher.detailName.length>4){
+        //         return this.dueVoucher.detailName.slice(0,4)
+        //     } else{
+        //         return this.dueVoucher.detailName;
+        //     }
             
-        },
+        // },
         returnDayStr(){
             if(this.dueVoucher.dueDay>=0){
                 return `剩余${this.dueVoucher.dueDay}天`;
@@ -49,7 +52,7 @@ export default {
                         config: {
                             displayType: 'OpenTab', // 打开方式，默认为 OpenTab:应用新tab页; DrawerForm: 抽屉； BrowserTab：浏览器tab页； OpenWindow：弹窗
                             forms: 'EA_BORROW',
-                            OBJ_GUID:this.dueVoucher.infofguid,
+                            OBJ_GUID:this.dueVoucher.infoFGuid,
                             OBJ_DJZT:this.dueVoucher.djzt
                         }
                     }
@@ -62,7 +65,7 @@ export default {
 <style lang="css" scoped>
 .returnDay{
     position: relative;
-    top: 70.5px; 
+    top: 33.5px; 
     left: 66px;
     font-family: "MicrosoftYaHei-Bold";
     font-weight: 550;
@@ -77,6 +80,13 @@ export default {
     font-size: 20px;
     overflow: hidden;
     text-overflow:ellipsis;
+
+}
+.borrowNote{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
 
 }
 </style>
