@@ -23,3 +23,5 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 111111
+- 档案系统部分vue代码
+- 代码不能运行，想运行请联系447422351@qq.com
