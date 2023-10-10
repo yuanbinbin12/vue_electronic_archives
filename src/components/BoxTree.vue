@@ -112,7 +112,9 @@ export default {
             this.isHoverShow = true;
             document.onmousemove=event=>{
                 var offset = $(".CabinetTree").offset();
-                var width = $(".hover-text").width()
+                console.log(this);
+                var width = $(this.$refs["hover-text"]).width();
+                console.log(width);
                 var x=event.clientX  + this.scrollY -  offset.left -width-15;
 			    var y=event.clientY  +this.scrollX - offset.top +10;
 				this.styleTopLeft["left"] = x+"px";
@@ -139,6 +141,11 @@ export default {
     },
     beforeDestroy(){
         window.removeEventListener('scroll',this.handleScroll,true);
+    },
+    watch:{
+        boxKey(){
+            this.voucherCode ="";
+        }
     }
 }
 </script>
