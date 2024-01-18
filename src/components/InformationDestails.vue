@@ -38,7 +38,8 @@ export default {
                 config: {
                             displayType: 'OpenTab',
                             formType: 'ReactComp',
-                            "reactCompType":"infodetails"
+                            "reactCompType":"infodetails",
+                            sysID:"ARCHIVE"
                         }
             })
         }

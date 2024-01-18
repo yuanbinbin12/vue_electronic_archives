@@ -6,7 +6,7 @@
             </div>
             <div style="position: absolute; right: 0px;">
                 <div style="background-color: #fff; margin-right: 20px; cursor: pointer;">
-                    <div class="btn4" @click="openHandle"><span style=" font-size: 6px;">我的待办</span></div>
+                    <div class="btn4" @click="openHandle"><span style=" font-size: 12px;">我的待办</span></div>
                 </div>
             </div>
         </div>

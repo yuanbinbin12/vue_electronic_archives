@@ -45,6 +45,7 @@
                 <div class="grid-content bg-purple" style="height: 309px">
                     <div style="text-align: left !important;">
                         <span class="borrowTotalSpan">档案政策</span>
+                        <div class="btn4" @click="openPolicys"><span style=" font-size: 12px;">更多</span></div>
                     </div>
                     <hr>
                     <div>
@@ -56,7 +57,7 @@
                 <div class="grid-content bg-purple" style="height: 309px;">
                     <div style="text-align: left !important;">
                         <span class="borrowTotalSpan">通知公告</span>
-                        <div class="btn4" @click="openDetails"><span style=" font-size: 0.1em;">更多</span></div>
+                        <div class="btn4" @click="openDetails"><span style=" font-size: 12px;">更多</span></div>
                     </div>
                     <hr>
                     <div>
@@ -90,7 +91,7 @@ export default {
         ...mapActions("firstPage",["getBorrowVoucher","getInformation","getPolicyList"]),
         ...mapMutations("firstPage",["setIsLoadingFristPage"]),
         openDetails(){
-            window.parent.parent.openReactComp({
+            window.parent.openReactComp({
                 id:"12345",
                 caption: '通知公告',
                 serverID: 'ARCHIVE', // 不需要可不传
@@ -99,9 +100,23 @@ export default {
                             formType: 'ReactComp',
                             reactCompType: 'infoalllist',
                             "F_TYPE":"Notice",
-                            "infoReactCompType":"infodetails"
+                            "infoReactCompType":"infodetails",
+                            sysID:"ARCHIVE"
                         }
             })
+        },
+        openPolicys(){
+            window.parent.openReactForm(
+                    {
+                        id: this.boxKey,
+                        caption: '档案政策',
+                        serverID: 'ARCHIVE', // 不需要可不传
+                        config: {
+                            displayType: 'OpenTab', // 打开方式，默认为 OpenTab:应用新tab页; DrawerForm: 抽屉； BrowserTab：浏览器tab页； OpenWindow：弹窗
+                            forms: 'EA_POLICY_QUERY'
+                        }
+                    }
+            )
         },
         setScale () {
       let ratio = 0
@@ -142,7 +157,7 @@ export default {
                 "margin-top":"0px"
             });
             $("html").css({
-                "overflow": "hidden"
+                "overflow-x": "hidden"
             })
         })
         let that = this
@@ -180,7 +195,7 @@ background: #fff !important;
 } */
 .btn4 {
     float:right;
-    margin-top: 5px;
+    margin-top: 8px;
     display: inline;
     border-radius: 20px;
     background-color: rgb(220, 242, 250);

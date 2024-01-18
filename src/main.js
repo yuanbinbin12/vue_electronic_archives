@@ -5,8 +5,7 @@ import store from './store';
 import router from './router';
 import  Print  from 'vue-print-nb';
 import axios from "axios"
-axios.defaults.baseURL = window.location.href.split("/dist/index.html")[0];
-console.log(window.location.href.split("/dist/index.html")[0]);
+axios.defaults.baseURL = window.location.href.split("/znsh/index.html")[0];
 
 Vue.config.productionTip = false;
 Vue.component(Tree.name,Tree);
