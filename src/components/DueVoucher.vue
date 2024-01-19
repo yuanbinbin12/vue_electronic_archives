@@ -1,11 +1,10 @@
 <template>
-    <div style="display: inline-block;margin-left: 33px; cursor: pointer; color: #6e6c6c; text-align: center;" @click="openPage()">
+    <div style="display: inline-block;margin-left: 33px; cursor: pointer; color: #6e6c6c; text-align: center;width: 17.5%; " @click="openPage()" ref="carders">
         <div :id="'dueFile'+indexSum" :style="dueFileStyle">
             <div class="fCode">{{ ''+dueVoucher.infoCode }}</div>
-            <div style="height:68px ; text-align: left !important; margin-left: 25px;overflow-y: hidden;overflow: hidden;text-overflow:ellipsis;">
-                <span v-show="dueVoucher.borrowNote.trim()!==''">借阅用途：</span>
-                <p style="white-space:initial;margin-top: 3px;" class="borrowNote">
-                    {{ dueVoucher.borrowNote }}
+            <div style="height:68px ; text-align: left !important; margin-left: 18px;overflow-y: hidden;overflow: hidden;text-overflow:ellipsis;">
+                <p v-show="dueVoucher.borrowNote.trim()!==''" style="white-space:initial;margin-top: 3px;" class="borrowNote">
+                    借阅用途：{{ dueVoucher.borrowNote }}
                 </p>
                 <!-- <ul style="margin: 0;">
                     <li v-for="detailName,index in detailNameArr" :key="index">{{ detailName }}</li>
@@ -23,7 +22,7 @@ export default {
     props:["dueVoucher","indexSum"],
     computed:{
         dueFileStyle(){
-            return{clear:"both",width: '235px',height: '235px',display: 'inline-block' ,'backgroundSize':'cover','backgroundRepeat':'no-repeat','backgroundPosition':'center','backgroundImage':'url(' + require(`@/static/${this.indexSum+1}.png`) + ')'}
+            return{clear:"both",width: '100%',height: '150px',display: 'inline-block' ,'backgroundSize':'100% 100%','backgroundRepeat':'no-repeat','backgroundImage':'url(' + require(`@/static/${this.indexSum+1}${this.dueVoucher.dueDay>=0?"":"-1"}.png`) + ')',"position":"relative"}
         },
         // detailNameArr(){
         //     if(this.dueVoucher&& this.dueVoucher.detailName && this.dueVoucher.detailName.length>4){
@@ -40,7 +39,10 @@ export default {
             else{
                 return `逾期${Math.abs(this.dueVoucher.dueDay)}天`;
             }
-        }
+        },
+        mounted() {
+            
+        },
     },
     methods:{
         openPage(){
@@ -64,29 +66,36 @@ export default {
 
 <style lang="css" scoped>
 .returnDay{
-    position: relative;
-    top: 33.5px; 
-    left: 66px;
-    font-family: "MicrosoftYaHei-Bold";
-    font-weight: 550;
-    font-size: 16px;
-    line-height: 33px;
+    font-family: "Microsoft YaHei";
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 24.5px;
+    position: absolute;
+    bottom: 2%;
+    right: 5%;
     color: #fff;
 }
 .fCode{
-    text-align: center;
-    padding-top: 70px;
-    width: 235px;
-    font-size: 20px;
+    text-align: left !important;
+    padding:30px 10px 0px 0px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 700;
     overflow: hidden;
     text-overflow:ellipsis;
+    margin: 15px 0px 8px 18px;
+    color: #2C4D6C;
+    font-family: "Microsoft YaHei";
 
 }
 .borrowNote{
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
+    /* 显示多少行 */
     overflow: hidden;
-
+    font-size: 14px;
+    font-weight: 400;
+    font-family: "Microsoft YaHei";
 }
 </style>

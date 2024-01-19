@@ -3,15 +3,16 @@
     v-loading="loadingDownload" element-loading-text="拼命下载档案政策中"
             element-loading-spinner="el-icon-loading"
             element-loading-background="rgba(0, 0, 0, 0.8)"
+            style="background-color: #f9fafc;"
     >
         <el-row :gutter="8">
             <el-col :span="4" class="userMessage">
-                <div class="grid-content bg-purple" style="height: 290px;">
+                <div class="grid-content bg-purple" style="height: 230px; margin-left: 10px;" >
                     <UserMessage/>
                 </div>
             </el-col>
             <el-col :span="20">
-                <div class="grid-content bg-purple" style="height: 290px;">
+                <div class="grid-content bg-purple" style="height: 230px;">
                     <DueVoucherList/>
                 </div>
             </el-col>
@@ -19,21 +20,25 @@
         <el-row :gutter="8">
             <el-col :span="4">
                 <div class="grid-content bg-purple" style="height: 271px;">
-                    <div style="text-align: left !important;">
-                        <span class="borrowTotalSpan">我的借阅统计</span>
+                    <div style="text-align: left !important;  border-bottom: 1px solid #EBEBEB;">
+                        <span class="borrowTotalSpan">
+                            <img width="4px" height="18px" :src="require('@/static/titleLine.png')" style="position: relative;top: 3px; margin-right: 3px;"/>
+                            我的借阅统计
+                        </span>
                     </div>
-                    <hr>
                     <div>
                         <BorrowTotal/>
                     </div>
                 </div>
             </el-col>
             <el-col :span="20">
-                <div class="grid-content bg-purple" style="height: 271px">
-                    <div style="text-align: left !important;">
-                        <span class="borrowTotalSpan">我的借阅申请</span>
+                <div class="grid-content bg-purple" style="height: 371px">
+                    <div style="text-align: left !important;  border-bottom: 1px solid #EBEBEB;">
+                        <span class="borrowTotalSpan">
+                            <img width="4px" height="18px" :src="require('@/static/titleLine.png')" style="position: relative;top: 3px; margin-right: 3px;"/>
+                            我的借阅申请
+                        </span>
                     </div>
-                    <hr>
                     <div>
                         <BorrowingApplication/>
                     </div>
@@ -41,26 +46,45 @@
             </el-col>
         </el-row>
         <el-row :gutter="8">
-            <el-col :span="12">
+            <el-col :span="4">
+                <div class="" style="height: 309px;position: relative;">
+                    <div class="grid-content bg-purple" style="height: 409px;width: 100%;position: absolute;top: -100px;">
+                        <div style="text-align: left !important;  border-bottom: 1px solid #EBEBEB;">
+                        <span class="borrowTotalSpan">
+                            <img width="4px" height="18px" :src="require('@/static/titleLine.png')" style="position: relative;top: 3px; margin-right: 3px;"/>
+                            常用功能
+                        </span>
+                    </div>
+                    <div>
+                        <OftenFun/>
+                    </div>
+                    </div>
+                </div>
+            </el-col>
+            <el-col :span="10">
                 <div class="grid-content bg-purple" style="height: 309px">
-                    <div style="text-align: left !important;">
-                        <span class="borrowTotalSpan">档案政策</span>
+                    <div style="text-align: left !important;  border-bottom: 1px solid #EBEBEB;">
+                        <span class="borrowTotalSpan">
+                            <img width="4px" height="18px" :src="require('@/static/titleLine.png')" style="position: relative;top: 3px; margin-right: 3px;"/>
+                            档案政策
+                        </span>
                         <div class="btn4" @click="openPolicys"><span style=" font-size: 12px;">更多</span></div>
                     </div>
-                    <hr>
                     <div>
                         <ArchivesPolicy/>
                     </div>
                 </div>
             </el-col>
-            <el-col :span="12">
+            <el-col :span="10">
                 <div class="grid-content bg-purple" style="height: 309px;">
-                    <div style="text-align: left !important;">
-                        <span class="borrowTotalSpan">通知公告</span>
+                    <div style="text-align: left !important;  border-bottom: 1px solid #EBEBEB;">
+                        <span class="borrowTotalSpan">
+                            <img width="4px" height="18px" :src="require('@/static/titleLine.png')" style="position: relative;top: 3px; margin-right: 3px;"/>
+                            通知公告
+                        </span>
                         <div class="btn4" @click="openDetails"><span style=" font-size: 12px;">更多</span></div>
                     </div>
-                    <hr>
-                    <div>
+                    <div style="margin-top: 10px;">
                         <InformationList/>
                     </div>
                 </div>
@@ -82,10 +106,11 @@ import ArchivesPolicy from "@/components/ArchivesPolicy.vue";
 import InformationList from "@/components/InformationList.vue";
 import UpLoadHeadPicture from '@/components/UpLoadHeadPicture.vue';
 import WarningAlter from '@/components/WarningAlter.vue';
+import OftenFun from '@/components/OftenFun.vue';
 export default {
     name: 'FirstPage',
     components:{
-        UserMessage,DueVoucherList,BorrowTotal,BorrowingApplication,ArchivesPolicy,InformationList,UpLoadHeadPicture,WarningAlter
+        UserMessage,DueVoucherList,BorrowTotal,BorrowingApplication,ArchivesPolicy,InformationList,UpLoadHeadPicture,WarningAlter,OftenFun
     },
     methods:{
         ...mapActions("firstPage",["getBorrowVoucher","getInformation","getPolicyList"]),
@@ -159,11 +184,19 @@ export default {
             $("html").css({
                 "overflow-x": "hidden"
             })
+            $("html").css({
+                "background":"#f9fafc"
+            })
         })
         let that = this
         window.addEventListener('resize', function () {
         that.setScale()
         })
+    },
+    beforeDestroy(){
+        $("html").css({
+                "background":"rgba(0,0,0,0)"
+            })
     },
     created(){
         this.getBorrowVoucher();
@@ -181,14 +214,15 @@ export default {
 <style lang="css" scoped>
 .userMessage{
 border-radius: 3px;
-background: #fff !important;
 }
 .borrowTotalSpan{
     font-family: "MicrosoftYaHei-Bold ";
+    padding: 0px 0px 0px 20px;
+    line-height: 40px;
     font-weight: 600;
     font-size: 18px;
-    line-height: 34px;
-    color: #2b3136;
+    text-align: left;
+    color: #434a4f;
 }
 /* #firstPage{
     
@@ -237,9 +271,6 @@ background: #fff !important;
 .btn4:hover span::after {
     opacity: 1;
     right: 0;
-}
-.el-row{
-    margin-bottom: 5px !important;
 }
 
 </style>

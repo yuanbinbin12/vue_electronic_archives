@@ -26,4 +26,15 @@ export default {
   margin-top: 60px;
   /* user-select: none; */
 }
+.el-row,.el-col{
+  background-color: #f9fafc !important;
+}
+.el-row{
+    margin-bottom: 6px !important;
+    padding-top: 6px !important;
+    padding-right: 4px !important;
+}
+.el-row .el-col:not(:first-child){
+  padding-left: 8px !important;
+}
 </style>

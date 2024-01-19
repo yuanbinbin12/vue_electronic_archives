@@ -83,7 +83,7 @@
       background: #99a9bf;
     }
     .bg-purple {
-      background: #f9fafc;
+      background: white;
     }
     .bg-purple-light {
       background: #687db3;

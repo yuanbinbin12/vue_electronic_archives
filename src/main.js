@@ -6,7 +6,7 @@ import router from './router';
 import  Print  from 'vue-print-nb';
 import axios from "axios"
 axios.defaults.baseURL = window.location.href.split("/znsh/index.html")[0];
-
+// axios.defaults.baseURL = "/OSPApplication";
 Vue.config.productionTip = false;
 Vue.component(Tree.name,Tree);
 Vue.component(Row.name,Row);

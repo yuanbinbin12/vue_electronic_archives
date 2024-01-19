@@ -29,7 +29,7 @@ export default {
 
 <style lang="css" scoped>
 .block{
-    padding-top: 60px;
+    padding-top: 33px;
     cursor: pointer;
 }
 .userCaption{

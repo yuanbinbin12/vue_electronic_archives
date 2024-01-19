@@ -1,11 +1,13 @@
 <template>
     <div>
-        <ul>
-            <li v-for="borrowApplication in borrowApplicationArr" :key="borrowApplication.fguid" style="padding-bottom:5px; color: #55565a; border-bottom: 1px solid rgba(61, 58, 58, 0.1);cursor: pointer;" @click="openPage(borrowApplication.fguid,borrowApplication.djzt)">
+        <ul style="margin-block-end:0px">
+            <li class="BorrowTableLi" v-for="borrowApplication in borrowApplicationArrShow" :key="borrowApplication.fguid" style="padding-bottom:5px; color: #55565a;cursor: pointer;" @click="openPage(borrowApplication.fguid,borrowApplication.djzt)">
                     <tr style="position: relative; top:3px;">
-                        <td style="width: 167px; text-align: left !important;padding-left: 31px;"><a><div style="overflow: hidden;text-overflow:ellipsis; width: 167px">{{ borrowApplication.code }}</div></a></td>
-                        <td style="padding-left: 417px;">借阅申请</td>
-                        <td style="padding-left: 417px;">{{borrowApplication.fcreate[0]+'-'+(borrowApplication.fcreate[1]>10?borrowApplication.fcreate[1]:'0'+borrowApplication.fcreate[1])+'-'+(borrowApplication.fcreate[2]>=10?borrowApplication.fcreate[2]:'0'+borrowApplication.fcreate[2]) }}</td>
+                        <td style="width: 180px; text-align: left !important;padding-left: 10px;"><a><div style="overflow: hidden;text-overflow:ellipsis; width: 180px">{{ borrowApplication.code }}</div></a></td>
+                        <td style="color: #0081CC;">借阅申请</td>
+                        <td style="width: 187px; text-align: left !important"><div style="overflow: hidden;text-overflow:ellipsis; width: 187px">{{borrowApplication.purpose}}</div></td>
+                        <td>{{borrowApplication.fcreate}}</td>
+                        <td>{{borrowApplication.returnTime}}</td>
                     </tr>
             </li>
         </ul>
@@ -17,7 +19,10 @@ import { mapState } from 'vuex';
 export default {
     name: 'BorrowingApplication',
     computed:{
-        ...mapState("firstPage",["borrowApplicationArr"])
+        ...mapState("firstPage",["borrowApplicationArr"]),
+        borrowApplicationArrShow(){
+            return this.borrowApplicationArr.slice(0,7)
+        }
     },
     methods:{
         openPage(fguid,djzt){
@@ -60,8 +65,23 @@ export default {
     width: 5px;
  }
  a {
+    font-weight: 400;
+    font-size: 14px;
     text-decoration:none;
-      color:#999999;
-      font-weight:bold;
+    color: #55565a;
+    font-family: "Microsoft YaHei";
+
+ }
+ .BorrowTableLi>tr>:not(:first-child){
+    padding-left: 200px;
+ }
+ .BorrowTableLi{
+    line-height: 35px;
+    font-family: "Microsoft YaHei";
+    font-weight: 400 !important;
+    color: #55565A;
+ }
+ ul li:not(:last-child){
+    border-bottom: 1px solid rgba(61, 58, 58, 0.1)
  }
 </style>
