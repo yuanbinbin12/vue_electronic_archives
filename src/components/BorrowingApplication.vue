@@ -73,7 +73,7 @@ export default {
 
  }
  .BorrowTableLi>tr>:not(:first-child){
-    padding-left: 200px;
+    padding-left: 150px;
  }
  .BorrowTableLi{
     line-height: 35px;

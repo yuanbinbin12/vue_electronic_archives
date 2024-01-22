@@ -6,8 +6,8 @@
                 <div style="padding-top: 12px; font-family: 'Microsoft YaHei Bold';font-weight: 800;font-size: 16px;color: #0081cc;">{{ information.day }}</div>
             </div>
             <div style="display: inline-block; margin-left: 20px; position: relative; top: -7px;">
-                <div style="font-family: 'Microsoft YaHei';font-weight: 700;font-size: 16px; letter-spacing: 0;  color: #4b5053; width: 500px;  overflow: hidden;text-overflow: ellipsis;white-space: nowrap; ">{{ informationTilte }}</div>
-                <div style="font-family: 'Microsoft YaHei';font-weight: 400;font-size: 15px;color: #9a9fa2;  width: 584px; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{ informationDetails }}</div>
+                <div style="font-family: 'Microsoft YaHei';font-weight: 700;font-size: 16px; letter-spacing: 0;  color: #4b5053; width: 100%;  overflow: hidden;text-overflow: ellipsis;white-space: nowrap; ">{{ informationTilte }}</div>
+                <div style="font-family: 'Microsoft YaHei';font-weight: 400;font-size: 15px;color: #9a9fa2;  width:100%; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{ informationDetails }}</div>
             </div>
         </div>
     </div>
