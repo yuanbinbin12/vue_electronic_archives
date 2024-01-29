@@ -1,5 +1,5 @@
 <template>
-    <div style="margin-left: 20px;">
+    <div style="margin-left: 20px;margin-top: 22px;">
         <InformationDestails v-for="information,index in informationArr" :information="information" :key="index"/>
     </div>
 </template>

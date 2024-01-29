@@ -44,6 +44,9 @@ export default {
         setHeadDefult(state){
             state.userHeaderCircleBlob = "";
             state.userHeaderCircleUrl = require("@/static/userHeader.png");
+        },
+        setOftenList(state,val){
+            state.oftenList = val;
         }
     },
     actions:{
@@ -62,7 +65,7 @@ export default {
             error=>{
                 context.commit(
                     "grounding/setWarningMsg",
-                    { message: error.data, type: "error" },
+                    { message: error.data ||"请求超时请稍后再试！", type: "error" },
                     { root: true }
                   );
             })
@@ -74,7 +77,7 @@ export default {
                 } else{
                     context.commit(
                         "grounding/setWarningMsg",
-                        { message: Response.data.message, type: "error" },
+                        { message: Response.data.message ||"请求超时请稍后再试！", type: "error" },
                         { root: true }
                       );
                 }
@@ -82,7 +85,27 @@ export default {
             error=>{
                 context.commit(
                     "grounding/setWarningMsg",
-                    { message: error.data, type: "error" },
+                    { message: error.data ||"请求超时请稍后再试！", type: "error" },
+                    { root: true }
+                  );
+            })
+        },
+        async getsetOftenList(context){
+            axios.post(`/firstPage/getOftenFuns`,{zzjg:"",userName:context.state.userName}).then(Response=>{
+                if(Response.data.code==="0"){
+                    context.commit("setOftenList",Response.data.data);
+                } else{
+                    context.commit(
+                        "grounding/setWarningMsg",
+                        { message: "请求超时请稍后再试！", type: "error" },
+                        { root: true }
+                      );
+                }
+            },
+            error=>{
+                context.commit(
+                    "grounding/setWarningMsg",
+                    { message: error.data ||"请求超时请稍后再试！", type: "error" },
                     { root: true }
                   );
             })
@@ -102,7 +125,7 @@ export default {
             error=>{
                 context.commit(
                     "grounding/setWarningMsg",
-                    { message: error.data, type: "error" },
+                    { message: error.data ||"请求超时请稍后再试！", type: "error" },
                     { root: true }
                   );
             })
@@ -204,6 +227,17 @@ export default {
         archivesPolicyArr:[],
         informationArr:[],
         fileUpdateLoadPageShow:false,
-        isLoadingFristPage:["true"]
+        isLoadingFristPage:["true"],
+        oftenList:[
+                {caption:"电子会计凭证收集",forms:"EA_ACC_VOUCHER"},
+                {caption:"手工组件",forms:"EA_MANUAL_COMPONENT"},
+                {caption:"预归档库",forms:"EA_POOL_PREPROD_ARCHIVE"},
+                {caption:"档案组卷",forms:"EA_VOLUME_LIST"},
+                {caption:"档案装盒",forms:"EA_BOXING_LIST"},
+                {caption:"档案上架",forms:"EA_BOXING_CHICE"},
+                {caption:"档案借阅",forms:"EA_BORROW_LIST"},
+                {caption:"档案归还",forms:"EA_RETURN_LIST"},
+                {caption:"档案查询",forms:"EA_POOL_ARCHIVED"},
+        ]
     }
 }

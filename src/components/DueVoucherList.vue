@@ -7,7 +7,10 @@
                 <span style="color: #fe4848;">
                 {{ dueVoucherSum }}&nbsp;</span>份
             </div>
-            <div style="position: absolute; right: 0px;">
+            <div style="position: absolute; right: 0px; display: flex; flex-direction: row;">
+                <div style="width: 10px; height: 10px; position: relative; top: 11px; right: 20px; cursor: pointer;" @click="refreshPageDate">
+                    <img src="../static/refresh.png"/>
+                </div>
                 <div style="background-color: #fff; margin-right: 20px; cursor: pointer;margin-top: 10px;">
                     <div class="btn4" @click="openHandle"><span style=" font-size: 12px;">我的待办</span></div>
                 </div>
@@ -27,7 +30,7 @@ import DueVoucher from './DueVoucher.vue';
 export default {
     name: 'DueVoucherList',
     computed:{
-        ...mapState("firstPage",["dueVoucherList","dueVoucherSum"]),
+        ...mapState("firstPage",["dueVoucherList","dueVoucherSum","isLoadingFristPage"]),
         dueFileListStyle(){
             if(this.dueVoucherSum>=5){
                 return {
@@ -57,6 +60,9 @@ export default {
                         }
                     }
             )
+        },
+        refreshPageDate(){
+            this.isLoadingFristPage.push("true");
         }
     }
 };

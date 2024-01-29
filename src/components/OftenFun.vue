@@ -1,47 +1,68 @@
 <template>
     <div>
         <ul>
-            <li v-for="oftenElement in oftenList" :key="oftenElement.forms" @click="openPage(oftenElement.caption,oftenElement.forms)">
-                <span>{{ oftenElement.caption }}</span>
+            <li v-for="oftenElement in oftenList" :key="oftenElement.fPkey" @click="openPage(oftenElement)">
+                <span>{{ oftenElement.fcdname }}</span>
             </li>
         </ul>
     </div>
 </template>
 
 <script>
-import {nanoid} from "nanoid";
+import {mapState} from "vuex";
 export default {
     name: 'OftenFun',
-
-    data() {
-        return {
-            oftenList:[
-                {caption:"电子会计凭证收集",forms:"EA_ACC_VOUCHER"},
-                {caption:"手工组件",forms:"EA_MANUAL_COMPONENT"},
-                {caption:"预归档库",forms:"EA_POOL_PREPROD_ARCHIVE"},
-                {caption:"档案组卷",forms:"EA_VOLUME_LIST"},
-                {caption:"档案装盒",forms:"EA_BOXING_LIST"},
-                {caption:"档案上架",forms:"EA_BOXING_CHICE"},
-                {caption:"档案借阅",forms:"EA_BORROW_LIST"},
-                {caption:"档案归还",forms:"EA_RETURN_LIST"},
-                {caption:"档案查询",forms:"EA_POOL_ARCHIVED"},
-            ]
-        };
+    computed:{
+        ...mapState("firstPage",["oftenList"])
     },
     methods: {
-        openPage(caption,forms){
-            window.parent.openReactForm(
-                    {
-                        id: nanoid(),
-                        caption,
-                        serverID: 'ARCHIVE', // 不需要可不传
-                        config: {
-                            displayType: 'OpenTab', // 打开方式，默认为 OpenTab:应用新tab页; DrawerForm: 抽屉； BrowserTab：浏览器tab页； OpenWindow：弹窗
-                            forms
-                        }
-                    }
-            )
+        openPage(rowSetData){
+            let param = {};
+            let vtreeAtte = rowSetData["vtreeAtte"] || "";
+            let formID = rowSetData["fform"] || "";
+            let config = {};
+            config = this.readValueAddToContents(vtreeAtte);
+            config.formID = formID
+            let formType = config.formType;
+            debugger
+            console.log(config);
+            if (formType == 'ReactForm') {
+                param.config = config;
+                param.caption = config.caption;
+                window.parent.openReactForm(param);
+            } else if (formType == 'GwtForm') {
+                var stub =  window.parent.StubObject();
+                stub.setObject("contentView", config.formID + ".form1");
+                stub.setObject("caption", config.caption);
+                stub.setObject("forms", config.formID);
+                window.parent.openGWTFormInReact(stub);
+            } else if (formType == 'IFrame') {
+                var webURL = config.webURL;
+                window.parent.open(webURL)
+            }
+        },
+        readValueAddToContents(value) {
+        var config = {};
+        if (value == null || value == '') {
+            config = {
+                propsKey: '',
+                propsValue: ''
+            };
+            return;
         }
+        var valArray = [];
+        valArray = value.split(';');
+        for (let i = 0; i < valArray.length; i++) {
+            if (valArray[i] != '' && valArray[i] != null) {
+                let emArray = valArray[i].split("=");
+                let key = emArray[0];
+                let val = emArray[1];
+                console.log("key:" + key + "      val:" + val);
+                config[key] = val;
+            }
+        }
+        return config;
+    }
     },
 };
 </script>

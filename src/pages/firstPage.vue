@@ -49,11 +49,12 @@
             <el-col :span="4">
                 <div class="" style="height: 309px;position: relative;">
                     <div class="grid-content bg-purple" style="height: 409px;width: 100%;position: absolute;top: -100px;">
-                        <div style="text-align: left !important;  border-bottom: 1px solid #EBEBEB;">
+                        <div style="text-align: left !important;  border-bottom: 1px solid #EBEBEB;position: relative;">
                         <span class="borrowTotalSpan">
                             <img width="4px" height="18px" :src="require('@/static/titleLine.png')" style="position: relative;top: 3px; margin-right: 3px;"/>
                             常用功能
                         </span>
+                        <img src="../static/install.png" style="position: absolute; right: 10px; top: 10px;cursor: pointer; " @click="openComponse"/>
                     </div>
                     <div>
                         <OftenFun/>
@@ -113,7 +114,7 @@ export default {
         UserMessage,DueVoucherList,BorrowTotal,BorrowingApplication,ArchivesPolicy,InformationList,UpLoadHeadPicture,WarningAlter,OftenFun
     },
     methods:{
-        ...mapActions("firstPage",["getBorrowVoucher","getInformation","getPolicyList"]),
+        ...mapActions("firstPage",["getBorrowVoucher","getInformation","getPolicyList","getsetOftenList"]),
         ...mapMutations("firstPage",["setIsLoadingFristPage"]),
         openDetails(){
             window.parent.openReactComp({
@@ -139,6 +140,19 @@ export default {
                         config: {
                             displayType: 'OpenTab', // 打开方式，默认为 OpenTab:应用新tab页; DrawerForm: 抽屉； BrowserTab：浏览器tab页； OpenWindow：弹窗
                             forms: 'EA_POLICY_QUERY'
+                        }
+                    }
+            )
+        },
+        openComponse(){
+            window.parent.openReactForm(    
+                    {
+                        id: this.boxKey,
+                        caption: '常用功能',
+                        serverID: 'ARCHIVE', // 不需要可不传
+                        config: {
+                            displayType: 'OpenWindow', // 打开方式，默认为 OpenTab:应用新tab页; DrawerForm: 抽屉； BrowserTab：浏览器tab页； OpenWindow：弹窗
+                            forms: 'HOMEPAGE_CommonFunctions'
                         }
                     }
             )
@@ -174,6 +188,7 @@ export default {
             this.getBorrowVoucher();
             this.getInformation();
             this.getPolicyList();
+            this.getsetOftenList();
         }
     },
     mounted(){
@@ -202,7 +217,8 @@ export default {
         this.getBorrowVoucher();
         this.getInformation();
         this.getPolicyList();
-        this.setScale()
+        this.setScale();
+        this.getsetOftenList();
     },
     computed:{
         ...mapState("firstPage",["fileUpdateLoadPageShow","loadingDownload","isLoadingFristPage"]),
@@ -239,7 +255,7 @@ border-radius: 3px;
     font-size: 20px;
     width: 80px;
     height: 20px;
-    line-height: 18px;
+    line-height: 20px;
     transition: all 0.5s;
     cursor: pointer;
     vertical-align: middle;
@@ -251,8 +267,11 @@ border-radius: 3px;
     cursor: pointer;
     display: inline-block;
     position: relative;
+    line-height: 20px;
+    text-align: center;
+    
     transition: 0.5s;
-    top:-2px;
+    top: -2px;
 }
  
 .btn4 span::after {

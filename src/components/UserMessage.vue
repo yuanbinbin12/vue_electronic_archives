@@ -48,4 +48,7 @@ export default {
     text-align: center;
     color: #6a6f74;
 }
+.el-avatar{
+    background: #fff !important;
+}
 </style>
