@@ -91,7 +91,7 @@
                 </div>
             </el-col>
         </el-row>
-        <UpLoadHeadPicture v-if="fileUpdateLoadPageShow"/>
+        <UpLoadHeadPicture v-show="fileUpdateLoadPageShow"/>
         <WarningAlter :warningMsg = "warningMsg" :typeMsg="typeMsg" :isShowPage="'0'"/>
     </div>
 </template>
@@ -160,6 +160,7 @@ export default {
             )
         },
         setScale () {
+            return
       let ratio = 0
       const screen = window.screen
       const ua = navigator.userAgent.toLowerCase()

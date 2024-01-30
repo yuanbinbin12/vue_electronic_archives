@@ -5,14 +5,28 @@
 </template>
 
 <script>
+import $ from 'jquery';
 export default {
   name: 'App',
-  beforeCreate(){
-    // window.parent.parent.reactGPO.contextPath = "/OSPApplication";
-    // window.parent.parent.reactGPO.UserName = "9999";
-    // window.parent.parent.reactGPO.UserCaption = "管理员";
-    // window.parent.parent.reactGPO.orgName = "华发物业";
+  mounted() {
+      window.addEventListener('scroll', this.setScroll, true);
+  },
+  beforeDestroy(){
+    window.removeEventListener('scroll', this.setScroll, true);
+  },
+  methods:{
+    setScroll(){
+      var top = document.body.scrollTop || document.documentElement.scrollTop || window.pageYOffset;
+      var left = document.body.scrollLeft || document.documentElement.scrollLeft ||window.pageXOffset;
+      $(".Masking-layer").css({
+        top,left
+      });
+      $(".confirm-window").css({
+        top,left
+      });
+    }
   }
+  
 }
 </script>
 
