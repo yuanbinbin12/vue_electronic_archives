@@ -91,7 +91,7 @@
                 </div>
             </el-col>
         </el-row>
-        <UpLoadHeadPicture v-show="fileUpdateLoadPageShow"/>
+        <UpLoadHeadPicture v-if="fileUpdateLoadPageShow"/>
         <WarningAlter :warningMsg = "warningMsg" :typeMsg="typeMsg" :isShowPage="'0'"/>
     </div>
 </template>
@@ -112,12 +112,6 @@ export default {
     name: 'FirstPage',
     components:{
         UserMessage,DueVoucherList,BorrowTotal,BorrowingApplication,ArchivesPolicy,InformationList,UpLoadHeadPicture,WarningAlter,OftenFun
-    },
-    data() {
-    return{
-            scrollX:0,
-            scrollY:0
-        }
     },
     methods:{
         ...mapActions("firstPage",["getBorrowVoucher","getInformation","getPolicyList","getsetOftenList"]),
@@ -189,14 +183,6 @@ export default {
           document.body.style.zoom = Math.floor((100 / ratio) * 100) / 100
         }
       }
-    },
-    handleScroll() {
-        this.$nextTick(()=>{
-                var top = document.body.scrollTop || document.documentElement.scrollTop || window.pageYOffset;
-                var left = document.body.scrollLeft || document.documentElement.scrollLeft ||window.pageXOffset;
-                this.scrollX = top;
-                this.scrollY = left;
-            })
     }
     },
     watch:{
@@ -206,31 +192,8 @@ export default {
             this.getPolicyList();
             this.getsetOftenList();
         },
-        scrollX(){
-        $(".Masking-layer").css({
-                    left:this.scrollY,
-                    top:this.scrollX
-        })
-        },
-        scrollY(){
-            $(".Masking-layer").css({
-                        left:this.scrollY,
-                        top:this.scrollX
-            });
-        },
-        warningMsg(){
-            this.handleScroll();
-        },
-        fileUpdateLoadPageShow(){
-            this.handleScroll();
-        },
-        loadingDownload(){
-            this.handleScroll();
-        }
     },
     mounted(){
-        this.handleScroll();
-        window.addEventListener('scroll', this.handleScroll, true);
         this.$nextTick(()=>{
             $("#app").css({
                 "margin-top":"0px"
@@ -251,7 +214,6 @@ export default {
         $("html").css({
                 "background":"rgba(0,0,0,0)"
             })
-        window.removeEventListener('scroll', this.handleScroll, true);
     },
     created(){
         this.getBorrowVoucher();
