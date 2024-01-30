@@ -91,7 +91,7 @@
                 </div>
             </el-col>
         </el-row>
-        <UpLoadHeadPicture v-if="fileUpdateLoadPageShow"/>
+        <UpLoadHeadPicture v-show="fileUpdateLoadPageShow"/>
         <WarningAlter :warningMsg = "warningMsg" :typeMsg="typeMsg" :isShowPage="'0'"/>
     </div>
 </template>
@@ -112,6 +112,12 @@ export default {
     name: 'FirstPage',
     components:{
         UserMessage,DueVoucherList,BorrowTotal,BorrowingApplication,ArchivesPolicy,InformationList,UpLoadHeadPicture,WarningAlter,OftenFun
+    },
+    data() {
+    return{
+            scrollX:0,
+            scrollY:0
+        }
     },
     methods:{
         ...mapActions("firstPage",["getBorrowVoucher","getInformation","getPolicyList","getsetOftenList"]),
@@ -152,7 +158,9 @@ export default {
                         serverID: 'ARCHIVE', // 不需要可不传
                         config: {
                             displayType: 'OpenWindow', // 打开方式，默认为 OpenTab:应用新tab页; DrawerForm: 抽屉； BrowserTab：浏览器tab页； OpenWindow：弹窗
-                            forms: 'HOMEPAGE_CommonFunctions'
+                            forms: 'HOMEPAGE_CommonFunctions',
+                            windowWidth:"720px",
+                            windowHeight:"600px",
                         }
                     }
             )
@@ -181,6 +189,14 @@ export default {
           document.body.style.zoom = Math.floor((100 / ratio) * 100) / 100
         }
       }
+    },
+    handleScroll() {
+        this.$nextTick(()=>{
+                var top = document.body.scrollTop || document.documentElement.scrollTop || window.pageYOffset;
+                var left = document.body.scrollLeft || document.documentElement.scrollLeft ||window.pageXOffset;
+                this.scrollX = top;
+                this.scrollY = left;
+            })
     }
     },
     watch:{
@@ -189,9 +205,32 @@ export default {
             this.getInformation();
             this.getPolicyList();
             this.getsetOftenList();
+        },
+        scrollX(){
+        $(".Masking-layer").css({
+                    left:this.scrollY,
+                    top:this.scrollX
+        })
+        },
+        scrollY(){
+            $(".Masking-layer").css({
+                        left:this.scrollY,
+                        top:this.scrollX
+            });
+        },
+        warningMsg(){
+            this.handleScroll();
+        },
+        fileUpdateLoadPageShow(){
+            this.handleScroll();
+        },
+        loadingDownload(){
+            this.handleScroll();
         }
     },
     mounted(){
+        this.handleScroll();
+        window.addEventListener('scroll', this.handleScroll, true);
         this.$nextTick(()=>{
             $("#app").css({
                 "margin-top":"0px"
@@ -212,6 +251,7 @@ export default {
         $("html").css({
                 "background":"rgba(0,0,0,0)"
             })
+        window.removeEventListener('scroll', this.handleScroll, true);
     },
     created(){
         this.getBorrowVoucher();
@@ -222,7 +262,7 @@ export default {
     },
     computed:{
         ...mapState("firstPage",["fileUpdateLoadPageShow","loadingDownload","isLoadingFristPage"]),
-        ...mapState("grounding",["warningMsg","typeMsg"]),
+        ...mapState("grounding",["warningMsg","typeMsg","showConfirmDialog"]),
     }
 };
 </script>
