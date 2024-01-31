@@ -65,6 +65,21 @@ export default {
             }
         }
     },
+    watch:{
+        userHeaderCircleUrl(newVal){
+            if(this.userHeaderCircleBlob===""){
+            this.ImageUrl = require("@/static/userHeader.png");
+            }else{
+                if(window.createObjectURL != undefined){
+                    this.ImageUrl = window.createObjectURL(this.userHeaderCircleBlob);
+                } else if(window.URL != undefined){
+                    this.ImageUrl = window.URL.createObjectURL(this.userHeaderCircleBlob);
+                } else if(window.webkitURL != undefined){
+                    this.ImageUrl = window.webkitURL.createObjectURL(this.userHeaderCircleBlob);
+                }
+            }
+        }
+    },
     methods: {
         ...mapMutations("firstPage",["setFileUpdateLoadPageShow"]),
         ...mapActions("firstPage",["uploadHeadPic"]),

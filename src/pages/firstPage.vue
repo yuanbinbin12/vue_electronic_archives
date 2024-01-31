@@ -160,7 +160,6 @@ export default {
             )
         },
         setScale () {
-            return
       let ratio = 0
       const screen = window.screen
       const ua = navigator.userAgent.toLowerCase()

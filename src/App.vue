@@ -1,5 +1,6 @@
 <template>
   <div id="app" onselectstart="return false">
+    <!-- 不允许复制选中 -->
     <router-view></router-view>
   </div>
 </template>
@@ -38,7 +39,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  /* user-select: none; */
+  /*//不可选中 包括火狐 在火狐中 onselectstart事件不能使用
+   -moz-user-select: none;
+  user-select: none; */
 }
 .el-row,.el-col{
   background-color: #f9fafc !important;
