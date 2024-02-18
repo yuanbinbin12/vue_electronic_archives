@@ -6,6 +6,7 @@ import GroundingQuery from '../pages/GroundingQuery.vue';
 import ImgPicture from '../components/ImgPicture.vue';
 import FirstPage from "../pages/firstPage.vue";
 import ShowPage from "../pages/showPage.vue";
+import GradingTable from "../pages/GradingTable.vue";
 import Vue from "vue";
 Vue.use(VueRouter);
 const router = new VueRouter({
@@ -52,6 +53,10 @@ const router = new VueRouter({
         name:"FirstPage",
         path:"/FirstPage",
         component:FirstPage
+    },{
+        name:"GradingTable",
+        path:"/GradingTable",
+        component:GradingTable
     }]
 });
 export default router;

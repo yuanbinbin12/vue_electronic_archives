@@ -211,12 +211,12 @@ export default {
     state:{
         userHeaderCircleUrl:"",
         userHeaderCircleBlob:"",
-        // userName:"9999",//window.parent.parent.reactGPO.UserName
-        // userCaption:"管理员",//window.parent.parent.reactGPO.UserCaption
-        // userJob:"华发物业",//window.parent.parent.reactGPO.orgName
-        userName:window.parent.parent.reactGPO.UserName,
-        userCaption:window.parent.parent.reactGPO.UserCaption,
-        userJob:window.parent.parent.reactGPO.orgName,
+        userName:"9999",//window.parent.parent.reactGPO.UserName
+        userCaption:"管理员",//window.parent.parent.reactGPO.UserCaption
+        userJob:"华发物业",//window.parent.parent.reactGPO.orgName
+        // userName:window.parent.parent.reactGPO.UserName,
+        // userCaption:window.parent.parent.reactGPO.UserCaption,
+        // userJob:window.parent.parent.reactGPO.orgName,
         dueVoucherSum:0,
         loadingUpload:false,
         loadingDownload:false,
