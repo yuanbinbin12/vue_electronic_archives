@@ -1,6 +1,7 @@
 <template>
     <div>
         <a-table
+            :rowKey="(record,index)=>{return index+record.F_GUID}"
             :columns="columns"
             :data-source="data"
             :expanded-row-keys.sync="expandedRowKeys"
@@ -36,6 +37,7 @@
 <script>
 import $ from 'jquery';
 import axios from 'axios';
+import {nanoid} from 'nanoid';
 const columns = [
   {
     title: '名称',
@@ -45,8 +47,8 @@ const columns = [
   },
   {
     title: '文件格式',
-    dataIndex: 'FILE_TYPE',
-    key: 'FILE_TYPE',
+    dataIndex: 'F_TYPE',
+    key: 'F_TYPE',
     width: "15%",
   },
   {
@@ -69,7 +71,7 @@ const columns = [
   }
 ];
 export default {
-    F_MC: 'GradingTableCom',
+    name: 'GradingTableCom',
     data() {
         return {
             data:[],
@@ -159,7 +161,17 @@ export default {
         return {pFILE_SIZESize:this.pFILE_SIZESize,current:this.current};
       }
     },
+    created(){
+      // window.setGrandingMetaData = this.setGrandingMetaData;
+      // window.setGrandingColums = this.setGrandingColums;
+      window.parent.setGrandingMetaData = this.setGrandingMetaData;
+      window.parent.setGrandingColums = this.setGrandingColums;
+      window.parent.parent.setGrandingMetaData = this.setGrandingMetaData;
+      window.parent.parent.setGrandingColums = this.setGrandingColums;
+    },
     mounted(){
+      window.parent.setGrandingMetaData = this.setGrandingMetaData;
+      window.parent.setGrandingColums = this.setGrandingColums;
       window.parent.parent.setGrandingMetaData = this.setGrandingMetaData;
       window.parent.parent.setGrandingColums = this.setGrandingColums;
         this.$nextTick(async()=>{
