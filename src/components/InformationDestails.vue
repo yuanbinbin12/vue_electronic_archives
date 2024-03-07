@@ -1,5 +1,5 @@
 <template>
-    <div style="margin-left: 5px; position: relative;mar">
+    <div style="margin-left: 5px; position: relative;">
         <div style="text-align: left !important;cursor: pointer;" @click="openInfoDetails">
             <div class="timeFormat">
                 <div style="padding-top: 1px;font-family: 'Microsoft YaHei';font-weight: 400;font-size: 14px;color: #0081cc;">{{ information.yearAndMount }}</div>
