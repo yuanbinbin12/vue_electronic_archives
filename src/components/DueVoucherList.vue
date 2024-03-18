@@ -27,6 +27,7 @@
 <script>
 import { mapState } from 'vuex';
 import DueVoucher from './DueVoucher.vue';
+import { nanoid } from 'nanoid';
 export default {
     name: 'DueVoucherList',
     computed:{
@@ -50,9 +51,9 @@ export default {
         openHandle(){
             window.parent.parent.openReactForm(
                     {
-                        id: this.boxKey,
+                        id: nanoid(),
                         caption: '我的待办',
-                        serverID: 'ARCHIVE', // 不需要可不传
+                        serverID: '', // 不需要可不传
                         config: {
                             displayType: 'OpenTab', // 打开方式，默认为 OpenTab:应用新tab页; DrawerForm: 抽屉； BrowserTab：浏览器tab页； OpenWindow：弹窗
                             forms: 'sys_homepage_show',
